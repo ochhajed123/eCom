@@ -123,5 +123,11 @@ for Ratings - $ npm i react-rating-stars-component;
 
 6.Implement Loader
 7. Product Details - New Page to display Product Details
+8. Carousel UI component for React using Material UI - for productDetails Page
+9. Use Loader - So that component will load properly - <Loader />
+10. Adding Filteration 
+11. // TO Display all Products available on Products Page from Navbar - <Products />
+12. To make search functionality from Navbar - <Search /> - route - http://localhost:3000/products/blue%20shirt
+13. To filter as per Price Range , filteredProductCount- to handle Pagination with Price filtered data
 */
 }

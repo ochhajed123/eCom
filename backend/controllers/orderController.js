@@ -84,7 +84,7 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
     "name email"
   );
   // const order = await Order.findById(req.params.id);
-  console.log("order", order);
+
   // getting name & email from User Db using user id
 
   if (!order) {

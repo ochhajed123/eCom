@@ -9,6 +9,7 @@ class ApiFeatures {
   //Search Feature of API
   search() {
     // http://localhost:4000/api/v1/products?keyword=I-Phone-First sec
+
     const keyword = this.querystr.keyword
       ? {
           // keyword found
@@ -20,7 +21,7 @@ class ApiFeatures {
       : {};
 
     this.query = this.query.find({ ...keyword });
-    return this;
+    return this; // To return this class completely
   }
 
   filter() {
@@ -40,7 +41,7 @@ class ApiFeatures {
     // http://localhost:4000/api/v1/products?keyword=I-Phone-First sec&price[gte]=1000
 
     let queryStr = JSON.stringify(queryCopy); // to convert into string
-    queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `${key}`);
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
 
     // this.query = this.query.find(queryCopy);
     this.query = this.query.find(JSON.parse(queryStr));

@@ -52,24 +52,33 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 // Get All Products
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   //pagination
-  const resultPerPage = 5;
+  const resultPerPage = 4;
   const productCount = await Product.countDocuments();
-  // Searching
+  // Searching, Filtering , Pagination
   const apiFeature = new Apifeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
+    .filter();
+
   //Eg - keyword is samosa (what we wanted to search in Product )
   // query - Product.find(), queryStr - req.query.keyword
 
+  // get products
+  let products = await apiFeature.query;
+  // get filtered products count
+  let filteredProductCount = products.length;
+
+  apiFeature.pagination(resultPerPage);
+
   // const products = await Product.find();
-  const products = await apiFeature.query; // Bcz query is Product.find()
-  console.log("products", products);
+  products = await apiFeature.query.clone(); // Bcz query is Product.find()
 
   res.status(200).json({
+    // Access these values in reducer
     success: true,
     products,
     productCount,
+    resultPerPage,
+    filteredProductCount,
   });
 });
 
